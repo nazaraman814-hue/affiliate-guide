@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>紹介バック 完全手順書 | 銀行・仮想通貨・SIM・PayPay</title>
+<style>
+:root{
+  --bg:#0f1115; --card:#171a21; --card2:#1e222b; --line:#2a2f3a;
+  --tx:#e8ebf0; --sub:#9aa3b2; --acc:#4ade80; --acc2:#38bdf8;
+  --warn:#fbbf24; --danger:#f87171;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);
+  font-family:-apple-system,"Hiragino Sans","Noto Sans JP",sans-serif;
+  line-height:1.75;font-size:15px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px 80px}
+header{padding:48px 0 28px;border-bottom:1px solid var(--line);margin-bottom:32px}
+h1{font-size:28px;margin:0 0 10px;letter-spacing:.02em}
+.lead{color:var(--sub);font-size:14px;margin:0}
+.badge{display:inline-block;background:var(--acc);color:#06240f;font-weight:700;
+  font-size:11px;padding:3px 10px;border-radius:99px;margin-bottom:14px}
+
+nav{position:sticky;top:0;background:rgba(15,17,21,.94);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);z-index:10;margin:0 -20px 36px;padding:12px 20px}
+nav ul{list-style:none;display:flex;gap:8px;margin:0;padding:0;flex-wrap:wrap}
+nav a{color:var(--sub);text-decoration:none;font-size:13px;padding:6px 12px;
+  border-radius:8px;border:1px solid var(--line);white-space:nowrap}
+nav a:hover{color:var(--tx);border-color:var(--acc);background:var(--card2)}
+
+h2{font-size:22px;margin:56px 0 6px;padding-top:8px;display:flex;align-items:center;gap:10px}
+h2 .n{background:var(--acc2);color:#04222f;width:30px;height:30px;border-radius:8px;
+  display:grid;place-items:center;font-size:15px;font-weight:800;flex:none}
+.h2sub{color:var(--sub);font-size:13px;margin:0 0 22px 40px}
+h3{font-size:17px;margin:30px 0 12px;color:var(--acc)}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:20px 22px;margin:16px 0}
+.card.hot{border-color:var(--acc);box-shadow:0 0 0 1px rgba(74,222,128,.12)}
+
+.money{display:inline-block;background:#22c55e;
+  color:#04240f;font-weight:800;padding:2px 10px;border-radius:6px;font-size:14px;
+  white-space:nowrap}
+.money.b{background:#0ea5e9;color:#04222f}
+
+ol.steps{counter-reset:s;list-style:none;padding:0;margin:14px 0}
+ol.steps>li{counter-increment:s;position:relative;padding:0 0 18px 42px;
+  border-left:2px solid var(--line);margin-left:13px}
+ol.steps>li:last-child{border-left-color:transparent;padding-bottom:0}
+ol.steps>li::before{content:counter(s);position:absolute;left:-14px;top:-2px;
+  width:26px;height:26px;border-radius:50%;background:var(--card2);
+  border:2px solid var(--acc2);color:var(--acc2);font-size:12px;font-weight:800;
+  display:grid;place-items:center}
+ol.steps b{color:#fff}
+
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:var(--card2);color:var(--sub);font-weight:600;font-size:12.5px}
+tr:nth-child(even) td:not(.money){background:rgba(255,255,255,.015)}
+td.money{display:table-cell;text-align:center}
+
+.note{border-left:3px solid var(--acc2);background:rgba(56,189,248,.07);
+  padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px}
+.warn{border-left:3px solid var(--warn);background:rgba(251,191,36,.08);
+  padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px}
+.danger{border-left:3px solid var(--danger);background:rgba(248,113,113,.08);
+  padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px}
+.note b,.warn b,.danger b{color:#fff}
+
+a.link{color:var(--acc2)}
+code{background:var(--card2);padding:2px 7px;border-radius:5px;font-size:13px;
+  color:var(--acc);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:16px 0}
+.mini{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:16px}
+.mini h4{margin:0 0 6px;font-size:14px;color:var(--acc)}
+.mini p{margin:0;font-size:13px;color:var(--sub)}
+
+.chk{list-style:none;padding:0;margin:10px 0}
+.chk li{padding:7px 0 7px 30px;position:relative;border-bottom:1px dashed var(--line);font-size:14px}
+.chk li:last-child{border-bottom:none}
+.chk li::before{content:"☐";position:absolute;left:4px;top:6px;color:var(--acc);font-size:16px}
+
+footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--line);
+  color:var(--sub);font-size:12.5px}
+@media print{body{background:#fff;color:#000}nav{display:none}.card{border-color:#ccc}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <span class="badge">2026年9月1日時点の実施中プログラム</span>
+  <h1>紹介バック 完全手順書</h1>
+  <p class="lead">銀行口座 / 仮想通貨アカウント / SIM開設 / PayPayアプリ ―― 「何を・どの順で・どうやったら報酬が入るか」を全部書いた実践ガイド</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#hayami">全報酬 早見表</a></li>
+    <li><a href="#kihon">仕組みの基本</a></li>
+    <li><a href="#junban">やる順番</a></li>
+    <li><a href="#register">自分が登録するもの一覧</a></li>
+    <li><a href="#paypay">① PayPay</a></li>
+    <li><a href="#sim">② SIM</a></li>
+    <li><a href="#bank">③ 銀行</a></li>
+    <li><a href="#crypto">④ 仮想通貨</a></li>
+    <li><a href="#asp">⑤ ASP(本命)</a></li>
+    <li><a href="#uketori">報酬の受け取り</a></li>
+    <li><a href="#chui">禁止事項</a></li>
+  </ul>
+</nav>
+
+<!-- ================= 早見表 ================= -->
+<h2 id="hayami"><span class="n">★</span>全案件 報酬額 早見表</h2>
+<p class="h2sub">2026年9月1日時点で実際に実施されている紹介バック・キャッシュバックの全額面。金額はすべて1人（1件）あたり。</p>
+
+<h3>▼ 自分が「紹介する側」でもらえる額</h3>
+<table>
+<tr><th style="width:150px">サービス</th><th style="width:170px">自分がもらう額</th><th style="width:110px">形式</th><th>上限</th><th>成果条件</th></tr>
+<tr><td><b>LINEMO</b></td><td class="money">6,000円分</td><td>PayPayポイント</td><td><b>無制限</b></td><td>専用URLから申込＋翌月末までに開通</td></tr>
+<tr><td><b>楽天モバイル</b></td><td class="money">7,000ポイント</td><td>楽天ポイント</td><td>年間上限あり</td><td>紹介URLから申込＋開通・利用</td></tr>
+<tr><td><b>UQ mobile</b></td><td class="money">2,500円分</td><td>au PAY残高</td><td>月4回線＝10,000円/月</td><td>コミコミプランバリュー / トクトクプラン2 で契約</td></tr>
+<tr><td><b>楽天銀行</b></td><td class="money">1,000ポイント</td><td>楽天ポイント</td><td>10名＝10,000pt</td><td>特設ページ＋コード入力で開設し、5万円以上入金</td></tr>
+<tr><td><b>auじぶん銀行</b></td><td class="money">1,000円</td><td><b>現金</b></td><td>10名＝10,000円</td><td>紹介経由で口座開設＋条件達成</td></tr>
+<tr><td><b>三菱UFJ銀行</b></td><td>抽選応募口数</td><td>抽選特典</td><td>—</td><td>合計2名以上の紹介で応募権</td></tr>
+<tr><td><b>PayPay</b></td><td class="money">300円分</td><td>PayPayポイント</td><td>—</td><td>コード入力で新規登録＋1,000円以上を1回で決済</td></tr>
+<tr><td><b>PayPayクレジット</b></td><td class="money">500円分</td><td>PayPayポイント</td><td>10名＝5,000円分</td><td>コード経由で新規入会＋期間内に1回決済</td></tr>
+<tr><td><b>Coincheck</b>（ASP）</td><td class="money">2,000〜5,000円</td><td><b>現金</b></td><td>無制限</td><td>口座開設＋本人確認完了</td></tr>
+<tr><td><b>DMM Bitcoin</b>（ASP）</td><td class="money">3,000〜5,000円</td><td><b>現金</b></td><td>無制限</td><td>口座開設＋本人確認完了</td></tr>
+<tr><td><b>bitFlyer</b>（ASP）</td><td class="money">2,000〜3,000円</td><td><b>現金</b></td><td>無制限</td><td>口座開設＋本人確認完了</td></tr>
+<tr><td><b>GMOコイン</b>（ASP）</td><td class="money">2,000〜3,000円</td><td><b>現金</b></td><td>無制限</td><td>口座開設＋本人確認完了</td></tr>
+<tr><td><b>WhiteBIT</b>（海外）</td><td class="money b">取引手数料の最大60%</td><td>仮想通貨</td><td>無制限・永続</td><td>紹介した人が取引を続ける限り継続</td></tr>
+<tr><td><b>Bybit</b>（海外）</td><td class="money b">手数料シェア（階層制）</td><td>仮想通貨</td><td>無制限・永続</td><td>紹介実績で料率が上がる</td></tr>
+<tr><td><b>Bitget</b>（海外）</td><td class="money b">手数料シェア</td><td>仮想通貨</td><td>無制限・永続</td><td>仮想通貨＋FX・株式CFDの手数料も対象</td></tr>
+</table>
+
+<h3>▼ 紹介された「相手」がもらえる額（勧誘の説得材料）</h3>
+<table>
+<tr><th style="width:150px">サービス</th><th style="width:200px">相手がもらう額</th><th>条件</th></tr>
+<tr><td><b>LINEMO</b></td><td class="money">乗換14,000円分／新規10,000円分</td><td>専用URL経由。SB・Y!mobile・LINEモバイルからの乗換は対象外</td></tr>
+<tr><td><b>楽天モバイル</b></td><td class="money">最大14,000ポイント</td><td>三木谷キャンペーン（コード2798）＋Rakuten最強プラン。新規は11,000pt</td></tr>
+<tr><td><b>UQ mobile</b></td><td class="money">特典あり</td><td>対象料金プランでの契約</td></tr>
+<tr><td><b>楽天銀行</b></td><td class="money">最大7,200ポイント</td><td>コード入力200pt＋5万円入金3,000pt＋楽天サービス2つ利用で計7,200pt</td></tr>
+<tr><td><b>auじぶん銀行</b></td><td class="money">現金2,000円</td><td>紹介経由での口座開設</td></tr>
+<tr><td><b>PayPay</b></td><td class="money">300円分（12〜18歳は500円分）</td><td>コード入力＋1,000円以上を1回で決済</td></tr>
+<tr><td><b>PayPayクレジット</b></td><td class="money">500円分</td><td>新規入会＋期間内1回決済</td></tr>
+<tr><td><b>docomo（SIMのみ）</b></td><td class="money">最大20,000dポイント</td><td>オンラインショップでSIMのみ新規/乗換（紹介ではなく公式CB）</td></tr>
+<tr><td><b>irumo</b></td><td class="money">20,000dポイント</td><td>3GB/6GB/9GBいずれでも（公式CB）</td></tr>
+<tr><td><b>au（SIMデビュー）</b></td><td class="money">15,000円相当</td><td>auオンラインショップで他社から乗換（公式CB）</td></tr>
+</table>
+
+<h3>▼ 自分で申し込んで自分がもらう（セルフバック／公式キャンペーン）</h3>
+<table>
+<tr><th style="width:220px">案件</th><th style="width:170px">自分がもらう額</th><th>経路・条件</th></tr>
+<tr><td><b>SBI証券</b></td><td class="money">約9,000円（現金）</td><td>アクセストレードのアフィバックモール経由。公式キャンペーンだと0円</td></tr>
+<tr><td><b>三菱UFJ eスマート証券</b><br>（旧auカブコム）</td><td class="money">最大12,700円（現金）</td><td>口座開設＋条件達成。翌々月末入金。サイト限定タイアップで+2,500円の場合あり</td></tr>
+<tr><td><b>楽天証券</b></td><td class="money">1,000円＋手数料CB＋pt</td><td>口座開設キャンペーン</td></tr>
+<tr><td><b>三菱UFJ銀行</b></td><td class="money">現金2,000円</td><td>アプリで新規口座開設＋翌月末時点で残高1万円以上（2025/10〜の恒常特典）</td></tr>
+<tr><td><b>楽天モバイル</b></td><td class="money">最大14,000ポイント</td><td>三木谷キャンペーン専用リンク経由でMNP。1人1回線まで</td></tr>
+<tr><td>仮想通貨各社</td><td class="money">2,000〜5,000円（現金）</td><td>アフィバックモール経由で自分の口座開設</td></tr>
+<tr><td>各種クレジットカード</td><td class="money">数千〜1万円超</td><td>アフィバックモール経由で発行</td></tr>
+</table>
+
+<div class="note">
+  <b>この表の読み方</b><br>
+  ・<b>「現金」表記＝銀行振込で現金化できる</b>もの。ポイントは失効リスクと使い道の制限がある。<br>
+  ・<b>「無制限」の3つ（LINEMO・ASP各社・海外取引所）</b>が本気で稼ぐときの主戦場。他は上限があるので早めに埋めきる。<br>
+  ・ASP案件の金額に幅があるのは、時期とASPによって単価が動くため。<b>提携前に管理画面で必ず現在の単価を確認</b>すること。
+</div>
+
+<div class="warn">
+  <b>身内5人に全部やってもらった場合の概算</b><br>
+  LINEMO 6,000×5＝30,000円／楽天銀行 1,000×5＝5,000pt／PayPay 300×5＝1,500円分／PayPayクレジット 500×5＝2,500円分／UQ 2,500×4＝10,000円（月上限）<br>
+  → <b>紹介だけで約49,000円相当。</b>さらに自分のセルフバック（SBI証券9,000円＋eスマート証券12,700円＋三木谷14,000pt）で<b>約35,700円相当</b>が上乗せできる。
+</div>
+
+<!-- ================= 基本 ================= -->
+<h2 id="kihon"><span class="n">◆</span>まず「紹介バック」の仕組みを理解する</h2>
+<p class="h2sub">全部で3タイプしかない。これを分かれば全案件に応用できる。</p>
+
+<div class="grid">
+  <div class="mini">
+    <h4>タイプA｜友達紹介コード</h4>
+    <p>アプリ内に自分専用のコードがある。友達がそれを入れて登録＋条件クリアで、<b>自分と相手の両方</b>にポイント。PayPay・楽天銀行・UQなど。<br><b>審査なし・今日すぐ始められる。</b></p>
+  </div>
+  <div class="mini">
+    <h4>タイプB｜専用URL発行</h4>
+    <p>公式フォームで「紹介専用の申込URL」を発行し、それ経由で契約してもらう。<b>通常ページから申し込まれると0円</b>になるのが最大の罠。LINEMO・楽天モバイル。</p>
+  </div>
+  <div class="mini">
+    <h4>タイプC｜ASPアフィリエイト</h4>
+    <p>ASP(広告代理サイト)に登録して広告リンクを貼る。<b>友達じゃなく不特定多数に配れる＝青天井。</b>仮想通貨・証券はここが本命。単価2,000〜10,000円。</p>
+  </div>
+</div>
+
+<div class="note">
+  <b>結論：</b>タイプA・Bで身内から確実に取りつつ、タイプC(ASP)を仕込んで青天井を狙う ―― これが正しい進め方。
+  タイプCだけは「登録審査」があるので、<b>今日のうちに申請だけ出しておく</b>のが最速ルート。
+</div>
+
+<!-- ================= 順番 ================= -->
+<h2 id="junban"><span class="n">◆</span>やる順番（この通りにやれば無駄がない）</h2>
+<p class="h2sub">理由：後の案件ほど前の案件を「材料」に使うため。順番を逆にすると取りこぼす。</p>
+
+<table>
+<tr><th style="width:60px">順</th><th>やること</th><th>所要</th><th>なぜこの順番か</th></tr>
+<tr><td><b>0</b></td><td>ASP(アクセストレード)に登録申請</td><td>10分</td><td>審査に数日かかる。<b>最初に出して寝かせる</b></td></tr>
+<tr><td><b>1</b></td><td>PayPayアプリ登録＋紹介コード確認</td><td>10分</td><td>SIM・銀行の報酬受け皿がPayPayポイントのため</td></tr>
+<tr><td><b>2</b></td><td>銀行口座開設（楽天銀行）</td><td>15分＋数日</td><td>ASP報酬の振込先になる。仮想通貨の入金元にもなる</td></tr>
+<tr><td><b>3</b></td><td>SIM契約（楽天モバイル or LINEMO）</td><td>30分</td><td>自分が契約者にならないと紹介側になれない</td></tr>
+<tr><td><b>4</b></td><td>仮想通貨口座開設（bitFlyer等）</td><td>20分＋審査1日</td><td>ASP審査が通ってからだと自分の分もセルフバック可</td></tr>
+<tr><td><b>5</b></td><td>全部の紹介コードを1枚にまとめて配布</td><td>随時</td><td>ここからが本番</td></tr>
+</table>
+
+<!-- ================= PayPay ================= -->
+<h2 id="paypay"><span class="n">1</span>PayPayアプリ｜紹介 <span class="money">300円 × 人数</span></h2>
+<p class="h2sub">難易度：★☆☆☆☆ ／ 一番カンタン。今日中に完了できる。常設キャンペーンなので締切なし。</p>
+
+<div class="card hot">
+<h3>A. 自分がまだPayPay未登録の場合（先に得する）</h3>
+<ol class="steps">
+  <li><b>誰かの紹介コードをもらってから登録する。</b>自分から登録すると300円もらい損ねる。友人に「PayPayの紹介コードちょうだい」と聞くだけ。</li>
+  <li>App Store / Google Play で「PayPay」をインストール。</li>
+  <li>電話番号とパスワードを設定 → SMSで届く認証コードを入力。</li>
+  <li>登録画面の途中にある<b>「紹介コードをお持ちの方」</b>をタップし、もらったコードを入力。<br><span style="color:var(--danger)">※登録完了後には入力できない。ここが唯一のチャンス。</span></li>
+  <li>銀行口座またはセブン銀行ATMから<b>チャージ</b>する（最低1,000円以上）。</li>
+  <li>コンビニなどで<b>1,000円以上を1回で決済</b>する。<br>→ 500円を2回に分けるのはNG。<b>1回で1,000円以上</b>が条件。</li>
+  <li>数日〜翌月に自分と紹介者の双方に<b>300円分のPayPayポイント</b>が入る。</li>
+</ol>
+</div>
+
+<div class="card">
+<h3>B. 自分の紹介コードを取り出して配る（ここが収入源）</h3>
+<ol class="steps">
+  <li>PayPayアプリを開く。</li>
+  <li>画面<b>右下の「アカウント」</b>をタップ。</li>
+  <li>メニュー内の<b>「あげる・もらう」または「友だち紹介」</b>を選ぶ。</li>
+  <li>自分の<b>紹介コード（英数字）と紹介用URL</b>が表示される。「リンクをコピー」または「シェア」をタップ。</li>
+  <li>LINE・X(旧Twitter)・Instagramのプロフィール等に貼って配布する。</li>
+  <li>相手が「登録 → コード入力 → 1,000円以上決済」を完了した時点で、自分に<b>300円分</b>が入る。</li>
+</ol>
+<div class="note">
+  <b>相手にはこう伝えると成功率が上がる：</b><br>
+  「このコード入れて登録して、コンビニで1,000円以上1回で払ってみて。そっちにも300円分入るから実質タダになるよ」<br>
+  → 相手にもメリットがあることを必ず先に言う。これが紹介系で一番大事なコツ。
+</div>
+<div class="warn">
+  <b>注意：</b>相手が12〜18歳の場合は特典が500ポイントに増額される期間限定キャンペーンあり(2026/3/3〜終了日未定)。学生に紹介するとお得。
+</div>
+</div>
+
+
+<div class="card"><h3>▼ まず自分がPayPayを使う側の手順（これが一番簡単）</h3>
+<ol class="steps">
+  <li>アプリストアから<b>「PayPay」</b>をダウンロード。</li>
+  <li>電話番号・メールアドレスで登録。本人確認は<b>後でOK</b>（紹介コードを使うだけなら不要）。</li>
+  <li><b>誰かの紹介コード</b>をもらって入力して登録する（自分が未登録なら、知人のコードで入っておくこと。後からコードを入れられない）。</li>
+  <li>ホーム画面右上の「<b>アカウント</b>」→「<b>友だち紹介</b>」に進む。</li>
+  <li>自分の紹介コードが表示されるのでコピーする。</li>
+  <li>相手に送る。「PayPayのコード入れて！1回1,000円以上の決済したらお互いに300円もらえる」と伝える。</li>
+</ol>
+<div class="note"><b>重要：</b>紹介報酬の条件是<b>「1,000円以上を1回で決済」</b>。分割払いでもOKだが、<b>500円×2回ではダメ</b>。コンビニ・公共料金・ATM入金は対象外。</div>
+
+<div class="card">
+<h3>C. PayPayクレジット（PayPayカード）紹介 <span class="money">500円 × 最大10人 = 5,000円</span></h3>
+<ol class="steps">
+  <li>PayPayアプリ内の<b>「PayPayカード」／「PayPayクレジット」</b>メニューを開く。</li>
+  <li><b>「友だちを誘う」</b>から紹介コード／URLを取得。</li>
+  <li>相手が紹介コード経由で<b>新規入会</b>し、期間内に<b>1回決済</b>する。</li>
+  <li>双方に500ポイント。自分は最大10人＝5,000ポイントまで。</li>
+</ol>
+<div class="warn"><b>期間限定：</b>この枠は開催期間が区切られている（直近は2026/6/19〜7/31で実施）。アプリ内で現在開催中かを必ず確認すること。開催していない時期もある。</div>
+</div>
+<!-- ================= SIM ================= -->
+<h2 id="sim"><span class="n">2</span>SIM開設｜紹介 <span class="money">2,500〜14,000円 × 人数</span></h2>
+<p class="h2sub">難易度：★★☆☆☆ ／ <b>単価が全ジャンル中いちばん高い。ここが主戦場。</b></p>
+
+<table>
+<tr><th>事業者</th><th>自分(紹介者)がもらえる額</th><th>相手がもらえる額</th><th>上限</th></tr>
+<tr><td><b>LINEMO</b></td><td class="money">6,000円分 PayPayポイント</td><td>乗換14,000円分／新規10,000円分</td><td><b>無制限</b></td></tr>
+
+<tr><td><b>UQ mobile</b></td><td class="money">2,500円分 au PAY残高</td><td>特典あり</td><td>月4回線＝10,000円/月</td></tr>
+</table>
+
+<div class="card hot">
+<h3>LINEMO 紹介｜手順（最優先。上限なしで6,000円/人）</h3>
+<ol class="steps">
+  <li>LINEMO公式サイトの<b>「紹介キャンペーン」</b>ページを開く。</li>
+  <li>紹介専用フォームに<b>自分の名前・電話番号など</b>を入力して送信。</li>
+  <li><b>自分専用の「紹介専用申込URL」</b>が発行される。これをコピーして保管。</li>
+  <li>紹介したい相手にそのURLを送る。</li>
+  <li>相手が<b>そのURLから</b>LINEMOに申し込み、翌月末までに開通させる。</li>
+  <li><b>開通日の7ヶ月後の上旬</b>に、自分へ6,000円分のPayPayポイントが付与される。</li>
+</ol>
+<div class="danger">
+  <b>絶対に外してはいけない3点</b><br>
+  ① 相手が<b>通常の申込ページ</b>から契約すると特典は0円。必ず発行したURLから申し込ませる。<br>
+  ② <b>ソフトバンク・ワイモバイル・LINEモバイルからの乗り換えは対象外。</b>docomo/au/楽天/他格安SIMからならOK。<br>
+  ③ ポイント付与前に相手が解約すると、<b>自分の分も無効</b>になる。
+
+<div class="note"><b>自分がLINEMOを先に契約しておく必要がある理由：</b>紹介キャンペーンでURLを発行するには「LINEMO契約者」であること。<br><b>手順：</b>① LINEMO公式サイトから申し込む → ② 本人確認（郵送で届いたSIMの番号入力） → ③ 開通 → ④ 紹介キャンペーンページからURL発行</div>
+
+<div class="note"><b>報酬が入るまで7ヶ月かかる</b>のがこの案件の唯一の弱点。逆に言えば7ヶ月後に確実に入るので、今から仕込むほど早く回収が始まる。</div>
+</div>
+
+<div class="card">
+<h3>楽天モバイル｜自分が契約する時は「三木谷キャンペーン」を使う</h3>
+<p style="margin-top:0;color:var(--sub);font-size:14px">これは紹介バックではなく<b>自分がもらう分</b>。だが金額が大きいので必ず経由すること。</p>
+<ol class="steps">
+  <li>通常の楽天モバイル公式サイトからは申し込まない。</li>
+  <li><b>三木谷キャンペーン専用リンク</b>（キャンペーンコード 2798）経由でアクセスする。</li>
+  <li><b>Rakuten最強プラン</b>を選択（データ通信専用プランは対象外）。</li>
+  <li>他社から<b>電話番号そのまま乗り換え(MNP)</b>なら14,000pt、新規契約なら11,000pt。</li>
+  <li>開通・利用開始 → 条件達成の<b>翌々月末頃から3ヶ月に分けて</b>自動付与。</li>
+</ol>
+<div class="warn"><b>1人1回線まで。</b>また予告なく終了する可能性があるキャンペーンなので、契約予定があるなら早めに。</div>
+</div>
+
+<div class="card">
+<h3>楽天モバイル｜他人を紹介して7,000pt もらう</h3>
+<ol class="steps">
+  <li>楽天モバイル契約者になる（上記で自分が契約済みならOK）。</li>
+  <li>my楽天モバイル アプリ／サイトの<b>「紹介キャンペーン」</b>から紹介URLを取得。</li>
+  <li>相手にURLを送り、そこから申し込んでもらう。</li>
+  <li>相手が開通・利用 → 自分に<b>7,000ポイント</b>。</li>
+</ol>
+<div class="note"><b>合わせ技：</b>相手には「三木谷キャンペーンのリンク」を教えれば相手は14,000pt、自分は紹介で7,000pt ―― <b>両取りが可能</b>。相手にも最大メリットが出るので断られにくい。</div>
+</div>
+
+<div class="card">
+<h3>UQ mobile 紹介｜2,500円 × 月4人</h3>
+<ol class="steps">
+  <li>My UQ mobile にログイン → <b>「紹介キャンペーン」</b>ページへ。</li>
+  <li>紹介コードを取得して相手に共有。</li>
+  <li>相手が対象プラン（<b>コミコミプランバリュー</b> または <b>トクトクプラン2</b>）で契約。</li>
+  <li>自分に1回線あたり<b>2,500円分のau PAY残高</b>が還元される。</li>
+
+<div class="note"><b>自分がUQ mobileを先に契約しておく必要がある理由：</b>紹介キャンペーンは「既存契約者」のみ。手順：① My UQ mobileから申し込む（またはauオンラインショップ） → ② 本人確認 → ③ 開通 → ④ My UQ mobile → 紹介キャンペーン → コード取得</div>
+<div class="warn"><b>上限は「1ヶ月あたり4回線＝10,000円相当」まで。</b>月をまたげばリセットされるので、5人目以降は翌月に回すのが正解。</div>
+</div>
+
+<!-- ================= 銀行 ================= -->
+<h2 id="bank"><span class="n">3</span>銀行口座｜紹介 <span class="money">1,000円 × 最大10人</span></h2>
+<p class="h2sub">難易度：★★☆☆☆ ／ 相手に「5万円入金」というハードルがあるため、身内向き。</p>
+
+<div class="card hot">
+<h3>楽天銀行｜口座紹介プログラム（自分 1,000pt／相手 最大7,200pt）</h3>
+<h4 style="color:var(--warn);margin:4px 0">▼ まず自分が楽天銀行の口座を作る（これが最初の一歩）</h4>
+<ol class="steps">
+  <li>楽天銀行の公式サイトにアクセス。</li>
+  <li><b>口座開設申込</b>ボタンを押す。</li>
+  <li>必要事項を入力（氏名・住所・生年月日・電話番号・勤め先など）。</li>
+  <li><b>本人確認書類</b>をスマホで撮影（運転免許証／マイナンバーカード／健康保険証のいずれか）。</li>
+  <li>審査通過（通常翌営業日）→ 楽天銀行IDとパスワードがメールで届く。</li>
+  <li>ログイン → マイページ → <b>「口座紹介キャンペーン」</b>ページで自分の紹介コードを取得。</li>
+</ol>
+<div class="note"><b>ポイント：</b>口座を作った時点で<b>「自分の分」のセルフバック(1,000pt)は出ないが</b>、相手側が5万円入金する条件を満たせば相手は最大7,200ptもらえる。相手のほうが得なので勧誘しやすい。</div>
+
+<h4 style="color:var(--acc2);margin-bottom:4px">▼ 自分が紹介する側の手順</h4>
+<ol class="steps">
+  <li>楽天銀行にログイン → マイページ内の<b>「口座紹介キャンペーン」</b>ページを開く。</li>
+  <li>自分の<b>紹介コード</b>（例：<code>P45864204</code> のような英数字）が表示されるのでコピー。</li>
+  <li>相手に<b>「口座紹介キャンペーン特設ページ」のURL</b>と<b>紹介コード</b>の2つをセットで送る。</li>
+  <li>相手が<b>特設ページから</b>口座開設を申し込む。</li>
+  <li>相手が申込フォーム内の<b>紹介コード入力欄</b>にコードを入力する。</li>
+  <li>相手が口座開設完了後、<b>ATM入金または他行振込で、一度に5万円以上</b>を入金する。</li>
+  <li>自分に<b>1名につき1,000ポイント</b>（最大10名＝10,000ポイント）。</li>
+</ol>
+<div class="danger">
+  <b>最大の落とし穴：</b>紹介コードは<b>口座開設の申込フォームの中でしか入力できない</b>。開設完了後に「やっぱりコード入れたい」は不可能。
+  相手には<b>「申込の途中で必ずこのコードをコピペして」</b>と、コードと一緒に強調して伝えること。<br>
+  また、<b>特設ページ以外</b>から開設されると双方の特典が激減する。必ず特設ページのリンクを送る。
+</div>
+<div class="note">
+  <b>相手側のメリット（説得材料）：</b>紹介コード入力で200pt ＋ 5万円入金で3,000pt ＋ 楽天グループのサービスを1つ利用で合計5,200pt／2つ利用で<b>合計7,200pt</b>。
+  さらに「はじめてのご利用プログラム」で現金最大2,000円も別途もらえる。<b>相手のほうが得</b>な設計なので勧めやすい。
+</div>
+<div class="warn"><b>相手に必須の前提：</b>楽天会員であること、「楽天ハッピープログラム」にエントリーしていること。この2つを先に案内するとスムーズ。</div>
+</div>
+
+<div class="card">
+<h3>auじぶん銀行｜紹介 1,000円（現金）× 最大10人</h3>
+
+<div class="note"><b>自分がauじぶん銀行の口座を作る手順：</b>auじぶん銀行アプリまたは公式サイトから「新規口座開設」 → 氏名・住所・生年月日・勤め先を入力 → 本人確認書類（運転免許証等）を撮影送信 → 審査通過（通常翌営業日） → 口座開設完了</div>
+<ol class="steps">
+  <li>auじぶん銀行アプリ／サイトの<b>「ご家族・ご友人紹介キャンペーン」</b>ページを開く。</li>
+  <li>紹介コードまたは紹介URLを取得して相手に送る。</li>
+  <li>相手が口座開設 → 所定の条件を達成。</li>
+  <li>自分に<b>1名につき現金1,000円</b>（最大10名＝10,000円）、相手に<b>現金2,000円</b>。</li>
+</ol>
+<div class="note"><b>ポイントではなく「現金」</b>で入るのがこの案件の強み。ポイント有効期限を気にしなくていい。開催期間が区切られているので公式で実施中か確認すること。</div>
+</div>
+
+<div class="card">
+
+<h3>三菱UFJ銀行｜口座紹介プラン</h3>
+
+<ol class="steps">
+  <li>三菱UFJ銀行アプリまたはWebの<b>「口座紹介プラン」</b>ページへ。</li>
+  <li>紹介リンク／紹介コードを取得して相手に共有。</li>
+  <li>相手が紹介リンク経由で口座開設。</li>
+  <li><b>合計2名以上</b>紹介すると特典（抽選応募口数など）。紹介人数が多いほど当選確率が上がる方式。</li>
+</ol>
+<div class="warn"><b>確定報酬ではなく抽選型。</b>期待値は楽天銀行やauじぶん銀行より低い。他をやり切ってから着手すればよい。</div>
+</div>
+
+<!-- ================= 仮想通貨 ================= -->
+<h2 id="crypto"><span class="n">4</span>仮想通貨アカウント｜<span class="money">2,000〜5,000円 × 人数</span> ＋ 継続報酬</h2>
+<p class="h2sub">難易度：★★★☆☆ ／ 国内はASP経由の固定報酬、海外は取引手数料の継続シェア。</p>
+
+
+<div class="card hot"><h3>STEP 0｜まずASP（アクセストレード）に登録する（これが一番大事）</h3>
+<ol class="steps">
+  <li><a class="link" href="https://www.accesstrade.ne.jp/" target="_blank">www.accesstrade.ne.jp</a> にアクセスし「無料会員登録」。</li>
+  <li>メールアドレス登録 → 届いたメールのURLから本登録へ。</li>
+  <li>氏名・住所・電話番号・<b>報酬振込先の銀行口座</b>を入力（先に作った楽天銀行などを使う）。</li>
+  <li><b>掲載メディアを登録</b>。SNS（Instagram/X/YouTube）のアカウントURLでOK。ブログ不要。</li>
+  <li>審査を待つ（数日）。承認されたらログイン → <b>「プログラム検索」</b>から「仮想通貨」「金融」ジャンルを選ぶ。</li>
+  <li>案件に<b>「提携申請」</b>（承認まで数日）。</li>
+  <li>承認された案件の<b>広告リンク</b>を取得。</li>
+</ol>
+<div class="note"><b>このASP経由で取る理由：</b>① 取引所直結の友達紹介だと0円の場合が多い ② ASP経由なら<b>「本人確認完了」で2,000〜5,000円の現金</b> ③ 「アフィバックモール」を使えば<b>自分の口座開設分</b>でも報酬が出る（SBI証券は公式0円→セルフバックで約9,000円）。まずはこれに登録する。</div></div>
+
+<h3>STEP 1｜まず自分が口座を開設する（説明できないと紹介できない）</h3>
+<ol class="steps">
+  <li>取引所を選ぶ。初心者に勧めやすいのは <b>Coincheck</b>（アプリが分かりやすい）か <b>bitFlyer</b>（国内最大手）。</li>
+  <li>メールアドレスとパスワードで<b>アカウント登録</b>。</li>
+  <li><b>SMS認証</b>（携帯番号）を通す。</li>
+  <li><b>本人確認</b>：スマホで運転免許証／マイナンバーカードを撮影＋自分の顔を撮影（eKYC）。ここが必須で、<b>紹介報酬の成果条件もほぼ「本人確認完了」</b>。</li>
+  <li>審査完了まで最短即日〜1営業日。完了メールが来たら口座開設完了。</li>
+  <li>銀行口座（先に作った楽天銀行など）を登録して入金できる状態にする。</li>
+</ol>
+<div class="note"><b>先に自分がやる意味：</b>①相手に手順を説明できる ②ASPの「セルフバック」を使えば<b>自分の開設分でも報酬が出る</b>案件がある。ASP登録が先に済んでいれば二度おいしい。</div>
+</div>
+
+<div class="card hot">
+<h3>STEP 2｜国内取引所の紹介（ASP経由が本命）</h3>
+<table>
+<tr><th>取引所</th><th>報酬目安（1件）</th><th>成果条件</th></tr>
+<tr><td><b>Coincheck</b></td><td class="money">2,000〜5,000円</td><td>口座開設＋本人確認完了</td></tr>
+<tr><td><b>DMM Bitcoin</b></td><td class="money">3,000〜5,000円</td><td>口座開設＋本人確認完了</td></tr>
+<tr><td><b>bitFlyer</b></td><td class="money">2,000〜3,000円</td><td>口座開設＋本人確認完了</td></tr>
+<tr><td><b>GMOコイン</b></td><td class="money">2,000〜3,000円</td><td>口座開設＋本人確認完了</td></tr>
+</table>
+<p style="font-size:14px;color:var(--sub)">これらは<b>取引所の友達紹介ではなくASP（アクセストレード）経由</b>で取るのが基本。手順は次章「⑤ ASP」を参照。<br>
+成果条件が「入金」や「取引」ではなく<b>「本人確認完了」まで</b>で済む案件が多く、達成ハードルが低いのが強み。</p>
+</div>
+
+<div class="card">
+<h3>STEP 3｜海外取引所の紹介（継続収入型）</h3>
+<table>
+<tr><th>取引所</th><th>報酬</th><th>特徴</th></tr>
+<tr><td><b>WhiteBIT</b></td><td class="money b">取引手数料の最大60%</td><td>業界最高水準の還元率。紹介した人が取引し続ける限り入り続ける</td></tr>
+<tr><td><b>Bybit</b></td><td class="money b">手数料シェア（階層制）</td><td>大手。紹介人数・実績で料率が上がる</td></tr>
+<tr><td><b>Bitget</b></td><td class="money b">手数料シェア</td><td>仮想通貨に加えFX・株式CFDの手数料も対象</td></tr>
+</table>
+<ol class="steps">
+  <li>取引所にアカウント登録（メール＋パスワード＋2段階認証）。</li>
+  <li>サイト内の<b>「Affiliate」または「Referral」</b>メニューを開く。</li>
+  <li><b>紹介リンク／リファラルコード</b>を取得。</li>
+  <li>リンクを共有。相手が登録して<b>取引</b>すると、その取引手数料の一定割合が自分に継続的に入る。</li>
+  <li>報酬は自分の取引所アカウント内に仮想通貨で貯まる。</li>
+</ol>
+<div class="warn">
+  <b>国内案件との性質の違い：</b>国内＝1件いくらの一時金。海外＝相手が取引しないと0円だが、取引が続く限り<b>永続的に入る</b>。
+  ライトな知人には国内、投資をガンガンやる人には海外 ―― と使い分けるのが正解。
+</div>
+<div class="danger"><b>税務上の注意：</b>海外取引所の報酬は仮想通貨で受け取るため、受取時点の時価で所得計上が必要になる。金額が大きくなってきたら確定申告の対象。国内ASPの現金報酬も同様に雑所得（給与所得者は年20万円超で申告義務）。</div>
+</div>
+
+<!-- ================= ASP ================= -->
+<h2 id="asp"><span class="n">5</span>ASP登録｜これが一番デカい（青天井）</h2>
+<p class="h2sub">友達の人数に縛られない唯一の方法。仮想通貨・証券の高単価案件はここにしかない。</p>
+
+<div class="card hot">
+<h3>アクセストレード｜登録手順</h3>
+<p style="margin-top:0;font-size:14px;color:var(--sub)">東証上場のインタースペース社が運営。2001年開始の老舗で、<b>仮想通貨の口座開設案件数は業界トップ</b>。金融ジャンルをやるなら必須。</p>
+<ol class="steps">
+  <li><a class="link" href="https://www.accesstrade.ne.jp/" target="_blank">https://www.accesstrade.ne.jp/</a> にアクセスし「無料会員登録」。</li>
+  <li>メールアドレス登録 → 届いたメールのURLから本登録へ。</li>
+  <li>氏名・住所・電話番号・<b>報酬振込先の銀行口座</b>を入力（ここで先に作った銀行口座を使う）。</li>
+  <li><b>掲載メディアを登録する。</b>サイト・ブログ・<b>SNS（Instagram / YouTube / X）</b>のいずれか1つでOK。<br>→ 本格的なブログは不要。運用中のSNSアカウントで申請できる。</li>
+  <li>審査を待つ（数日）。承認されるとパートナー登録完了。</li>
+  <li>ログイン後、<b>「プログラム検索」</b>から「仮想通貨」「金融」ジャンルを選ぶ。</li>
+  <li>提携したい案件に<b>「提携申請」</b>を出す（案件ごとに個別審査あり）。</li>
+  <li>提携承認された案件の<b>広告リンク（アフィリエイトリンク）</b>を取得。</li>
+  <li>そのリンクをSNS・ブログ・note等に掲載する。</li>
+  <li>リンク経由で相手が口座開設＋本人確認完了 → 管理画面に成果が計上。</li>
+  <li>確定した報酬が<b>指定の銀行口座に振り込まれる</b>（最低支払額1,000円）。</li>
+</ol>
+</div>
+
+<div class="card">
+<h3>アフィバックモール（セルフバック）｜自分の申込で報酬をもらう</h3>
+<p style="margin-top:0;font-size:14px;color:var(--sub)">サイトに広告を貼らなくても、<b>自分自身が申し込むだけで報酬</b>が出る仕組み。紹介する相手がいなくても即金になる。</p>
+<ol class="steps">
+  <li>アクセストレードにログイン → <b>「アフィバックモール」</b>を開く。</li>
+  <li>金融ジャンル（証券・仮想通貨・FX・クレジットカード）から案件を選ぶ。</li>
+  <li>案件ページの申込リンクから、自分でそのサービスに申し込む。</li>
+  <li>成果条件（口座開設・本人確認など）を達成する。</li>
+  <li>報酬が自分のアクセストレード口座に計上され、後日振込。</li>
+</ol>
+<table>
+<tr><th>案件</th><th>セルフバック額の目安</th></tr>
+<tr><td><b>SBI証券</b> 口座開設</td><td class="money">約9,000円</td></tr>
+<tr><td>仮想通貨各社 口座開設</td><td class="money">2,000〜5,000円</td></tr>
+<tr><td>各種クレジットカード発行</td><td class="money">案件により数千〜1万円超</td></tr>
+</table>
+<div class="note"><b>SBI証券は公式キャンペーンだと0円だが、セルフバックを通すと約9,000円。</b>同じ口座開設でこれだけ差がつく。口座を作る予定があるなら必ずASPを経由すること。</div>
+</div>
+
+<div class="card">
+<h3>その他 押さえておくASP</h3>
+<div class="grid">
+  <div class="mini"><h4>バリューコマース</h4><p>格安SIM・通信ジャンルに強い。IIJmio等の案件あり。金融の単価も高い。</p></div>
+  <div class="mini"><h4>A8.net</h4><p>国内最大手ASP。案件数が圧倒的。格安SIM案件も豊富。審査が緩く初心者向け。</p></div>
+</div>
+<div class="note"><b>ASPは複数登録して単価を比較するのが常識。</b>同じ案件でもASPによって報酬額が違うことがよくある。3社登録して一番高いところのリンクを使えばよい。</div>
+</div>
+
+<!-- ================= 受け取り ================= -->
+<h2 id="uketori"><span class="n">◆</span>報酬はいつ・どうやって受け取るのか</h2>
+
+<table>
+<tr><th>種類</th><th>受取形式</th><th>タイミング</th><th>受取のために必要なこと</th></tr>
+<tr><td>PayPay紹介</td><td>PayPayポイント</td><td>条件達成後 数日〜翌月</td><td>自動付与。何もしなくてよい</td></tr>
+<tr><td>LINEMO紹介</td><td>PayPayポイント</td><td><b>開通の7ヶ月後の上旬</b></td><td>それまで相手が解約しないこと</td></tr>
+<tr><td>楽天モバイル</td><td>楽天ポイント（期間限定）</td><td>翌々月末から3ヶ月分割</td><td>楽天会員リンク登録</td></tr>
+<tr><td>UQ mobile</td><td>au PAY残高</td><td>条件達成の翌月以降</td><td>au PAYアプリの利用登録</td></tr>
+<tr><td>楽天銀行</td><td>楽天ポイント（期間限定）</td><td>約2ヶ月後</td><td>ハッピープログラムのエントリー</td></tr>
+<tr><td>auじぶん銀行</td><td><b>現金</b></td><td>判定日の翌月以降</td><td>口座を維持していること</td></tr>
+<tr><td>ASP（アクセストレード）</td><td><b>現金（銀行振込）</b></td><td>成果確定の翌々月15日前後</td><td>報酬合計1,000円以上</td></tr>
+<tr><td>海外取引所</td><td>仮想通貨</td><td>日次〜月次で自動</td><td>取引所アカウントの維持</td></tr>
+</table>
+
+<div class="warn">
+  <b>ポイント系は有効期限に注意。</b>楽天の期間限定ポイントは付与から数ヶ月で失効する。付与通知が来たら早めに使い切ること。
+  現金で受け取れるのは<b>ASP報酬とauじぶん銀行</b>。安定して現金化したいならASPを主軸にするのが正解。
+</div>
+
+<!-- ================= 注意 ================= -->
+<h2 id="chui"><span class="n">◆</span>やってはいけないこと（報酬没収・アカBANの原因）</h2>
+
+<div class="danger">
+  <b>1. 自分で複数アカウントを作って自分を紹介する（自己紹介・不正利用）</b><br>
+  最も多い没収理由。家族名義でも同一世帯・同一端末・同一IPは検知される。<b>報酬没収に加えアカウント停止</b>もある。
+</div>
+<div class="danger">
+  <b>2. 「絶対儲かる」「必ず値上がりする」などの誇張表現</b><br>
+  仮想通貨・金融案件では明確に禁止。<b>成果が発生していても広告主に否認され報酬0円</b>になる。金商法・景表法にも抵触しうる。
+</div>
+<div class="danger">
+  <b>3. 広告であることを隠す（ステマ）</b><br>
+  2023年10月からステマは景品表示法違反。SNSやブログに広告リンクを貼るときは<b>「PR」「広告」「アフィリエイト広告を含みます」</b>の明記が義務。
+</div>
+<div class="warn">
+  <b>4. 通常ページから申し込ませてしまう</b><br>
+  LINEMO・楽天銀行で頻発する事故。<b>専用URL／特設ページ以外からの申込は報酬0円</b>。相手に送るときは「必ずこのリンクから」と一言添える。
+</div>
+<div class="warn">
+  <b>5. 確定申告を忘れる</b><br>
+  紹介報酬・アフィリエイト収入は<b>雑所得</b>。給与所得者は年間20万円超で申告義務が発生する。ポイントで受け取った分も原則課税対象。
+</div>
+
+<!-- ================= 自分が作るもの一覧 ================= -->
+<h2><span class="n">◆</span>自分が登録・作成しないといけないもの一覧</h2>
+<p class="h2sub">何から始めていいか分からない場合、これにチェックを入れながら順番に做完えればOK。全部で6つ。</p>
+
+<div class="card hot">
+<h3>① PayPayアカウント（一番簡単・今日完了）</h3>
+<ol class="steps">
+  <li>アプリストアで「PayPay」をDL → 電話番号・パスワードで登録</li>
+  <li>誰かの紹介コードをもらって入力（未登録なら友人に聞く）</li>
+  <li>1,000円以上を1回決済 → 300円分ゲット</li>
+  <li>アカウント → 友だち紹介 → 自分のコードを確認・コピー</li>
+</ol>
+<b>この時点で：PayPay紹介で300円/人 × 何人でも / PayPayクレジットで500円/人 × 10人</b>
+</div>
+
+<div class="card hot">
+<h3>② 銀行口座（楽天銀行）</h3>
+<ol class="steps">
+  <li>楽天銀行公式サイト → 新規口座開設</li>
+  <li>氏名・住所・勤め先・生年月日を入力</li>
+  <li>運転免許証をスマホで撮影送信</li>
+  <li>審査通過（通常翌営業日）→ ログイン</li>
+  <li>マイページ → 口座紹介キャンペーン → 紹介コードコピー</li>
+</ol>
+<b>この時点で：楽天銀行紹介で1,000pt/人 × 10人</b>
+</div>
+
+<div class="card hot">
+<h3>③ ASP（アクセストレード）登録</h3>
+<ol class="steps">
+  <li><a class="link" href="https://www.accesstrade.ne.jp/" target="_blank">www.accesstrade.ne.jp</a> から無料会員登録</li>
+  <li>氏名・住所・電話番号・銀行口座を入力</li>
+  <li>SNSアカウントのURLを登録</li>
+  <li>審査通過（数日）→ ログイン</li>
+  <li>プログラム検索 → 仮想通貨・金融ジャンル → 案件に提携申請</li>
+</ol>
+<b>この時点で：Coincheck 2,000〜5,000円/人 / DMM Bitcoin 3,000〜5,000円/人 / SBI証券 約9,000円（セルフバック）</b>
+</div>
+
+<div class="card hot">
+<h3>④ SIMを契約する（LINEMO or 楽天モバイル）</h3>
+<ol class="steps">
+  <li>LINEMO公式サイトから申込 → 本人確認 → 開通</li>
+  <li>（or 楽天モバイル）三木谷キャンペーン専用リンクから申込</li>
+  <li>紹介キャンペーンページからURL/コードを取得</li>
+</ol>
+<b>この時点で：LINEMO 6,000円/人 × 無制限 / 楽天モバイル 7,000pt/人 / UQ 2,500円/人 × 月4人</b>
+</div>
+
+<div class="card hot">
+<h3>⑤ 仮想通貨口座を1つ（bitFlyer or Coincheck）</h3>
+<ol class="steps">
+  <li>取引所公式サイトから登録 → SMS認証 → 本人確認</li>
+  <li>ASP（アクセストレード）の案件ページから申し込めばセルフバックも出る</li>
+</ol>
+<b>この時点で：自分の分もASP経由で2,000〜5,000円</b>
+</div>
+
+<div class="card hot">
+<h3>⑥ auじぶん銀行（任意）</h3>
+<ol class="steps">
+  <li>auじぶん銀行公式サイト → 新規口座開設</li>
+  <li>本人確認書類提出 → 審査通過</li>
+  <li>紹介キャンペーンページからコード取得</li>
+</ol>
+<b>この時点で：1,000円/人 × 10人（現金）</b>
+</div>
+
+<div class="card">
+<h3>全行程まとめ</h3>
+<table>
+<tr><th>順番</th><th>登録・作成するもの</th><th>所要時間</th><th>審査・到着日</th><th>備考</th></tr>
+<tr><td><b>①</b></td><td>PayPayアカウント</td><td>10分</td><td>即</td><td>友人のコードを先にもらう</td></tr>
+<tr><td><b>②</b></td><td>楽天銀行口座</td><td>15分</td><td>翌営業日</td><td>ASPの振込先になる</td></tr>
+<tr><td><b>③</b></td><td>アクセストレード(ASP)</td><td>10分</td><td>数日</td><td>最初に出して寝かせる</td></tr>
+<tr><td><b>④</b></td><td>SIM（LINEMO or 楽天モバイル）</td><td>30分</td><td>数日〜1週間</td><td>開通したら紹介URL発行</td></tr>
+<tr><td><b>⑤</b></td><td>仮想通貨口座（1つ）</td><td>20分</td><td>1日〜</td><td>ASP審査通ってから</td></tr>
+<tr><td><b>⑥</b></td><td>auじぶん銀行（任意）</td><td>15分</td><td>翌営業日</td><td>現金化したい人向け</td></tr>
+</table>
+<div class="note"><b>この6つを順番に做完えれば、紹介できるコード・URLが全部手に入る。</b>以降は「相手に送る」作業だけ。このファイルの早見表の通り。</div>
+</div>
+
+<!-- ================= チェックリスト ================= -->
+<h2><span class="n">◆</span>実行チェックリスト</h2>
+
+<div class="card">
+<h3>今日やること</h3>
+<ul class="chk">
+  <li>アクセストレードに登録申請を出す（審査に数日かかるので最優先）</li>
+  <li>PayPayアプリの「アカウント → 友だち紹介」で自分の紹介コードを控える</li>
+  <li>まだPayPay未登録なら、誰かの紹介コードをもらってから登録する</li>
+  <li>楽天銀行の口座を持っていなければ、誰かの紹介コード経由で開設申込</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>今週やること</h3>
+<ul class="chk">
+  <li>SIMを契約する（楽天モバイルは三木谷キャンペーン専用リンク経由で）</li>
+  <li>契約後、LINEMO／楽天モバイルの紹介URLを発行して保管</li>
+  <li>仮想通貨口座を1つ開設して本人確認まで完了させる</li>
+  <li>ASP審査が通ったら、仮想通貨・証券の案件に提携申請を出す</li>
+  <li>SBI証券をアフィバックモール経由で開設（約9,000円）</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>継続してやること</h3>
+<ul class="chk">
+  <li>全案件の紹介コード／URLを1枚のメモにまとめる（LINEで即送れるように）</li>
+  <li>相手に送るときは必ず「相手側のメリット」を先に伝える</li>
+  <li>SNSプロフィールやnoteに紹介リンクを常設する（PR表記を忘れずに）</li>
+  <li>月1回、各サービスとASPの管理画面で成果と付与状況を確認する</li>
+  <li>年間の報酬合計を記録しておく（確定申告用）</li>
+</ul>
+</div>
+
+<footer>
+  作成日：2026年9月1日<br>
+  本資料の金額・条件は作成時点で公開されていた情報に基づく。<b>キャンペーンは予告なく変更・終了する</b>ため、申込前に必ず各社公式サイトで最新の条件を確認すること。<br>
+  特に「三木谷キャンペーン」「PayPayクレジット紹介」「auじぶん銀行紹介」は開催期間が区切られている。
+</footer>
+
+</div>
+</body>
+</html>
